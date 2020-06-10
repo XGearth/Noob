@@ -1,0 +1,27 @@
+def stockpicker(days)
+  bestpick = Hash.new
+  profit = 0
+  bestday = {}
+  
+  days.each_with_index { |buyprice, buyday|
+    days.each_with_index { |sellprice, sellday|
+      if buyday <= sellday
+        if profit < sellprice - buyprice
+          profit = sellprice - buyprice
+          bestday[buyday+1] = sellday+1
+        end
+      end
+    }
+  }
+
+  if profit > 0
+    bestday.each { |buy, sell|
+      puts "Buy on Day:#{buy} and Sell on Day:#{sell} To Get Profit of #{profit}"
+    }
+  else
+    puts "No Profitable Days"
+  end
+end
+
+stockdays = [17,3,6,9,15,8,6,1,10]
+stockpicker(stockdays)
