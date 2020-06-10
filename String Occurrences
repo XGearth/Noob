@@ -1,0 +1,12 @@
+def wordcount(string)
+  wordhash = Hash.new(0)
+  string.each { |word|
+    wordhash[word] += 1
+  }
+
+  return wordhash
+end
+
+words = ["Apple", "Banana", "Apple", "Orange", "Mango", "Melon", "Grapes", "Strawberry", "Apple"]
+
+puts wordcount(words)
