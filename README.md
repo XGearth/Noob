@@ -1,2 +1,1 @@
-# Noob
-Trial
+This Repository is for Private Use
