@@ -1,0 +1,31 @@
+print "Give Me A Sentence: "
+word = gets.chomp
+print "Number of Shifts: "
+shift = gets.chomp.to_i
+
+word.each_byte { |x|
+  case x
+    when (65..90)
+      if (x + shift) < 65 
+        x = 91 + shift
+      elsif (x + shift) > 90
+        x = 64 + shift
+      else
+        x += shift
+      end
+      print x.chr
+
+    when (97..122)
+      if (x + shift) < 97 
+        x = 123 + shift
+      elsif (x + shift) > 122
+        x = 96 + shift
+      else
+        x += shift
+      end
+      print x.chr
+      
+    else
+      print x.chr
+  end
+}
