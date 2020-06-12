@@ -1,0 +1,23 @@
+def bubble_sort(arr)
+  key = 1
+  sort = 0
+  swap = false #CHECK FOR SWAP OCCURRENCE
+
+  while sort != arr.length #CHECKS WHOLE ARRAY
+    while key != arr.length #CHECKS ADJACENT NUMBERS
+      if arr[key-1] > arr[key]
+        arr[key-1], arr[key] = arr[key], arr[key-1]
+        swap = true
+      end
+      key += 1
+    end
+
+    sort += 1
+    key = 1
+    break if swap == false #IF NO SWAP HAPPENED DURING ITERATION
+    swap = false
+  end
+end
+
+arr_num = [4,3,78,2,0,2]
+bubble_sort(arr_num)
