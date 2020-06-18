@@ -1,0 +1,88 @@
+class Tboard
+  @@ttt = [0,1,2,
+           3,4,5,
+           6,7,8]
+  
+  def showboard
+    puts "| #{@@ttt[0]} | #{@@ttt[1]} | #{@@ttt[2]} |"
+    puts "-------------"
+    puts "| #{@@ttt[3]} | #{@@ttt[4]} | #{@@ttt[5]} |"
+    puts "-------------"
+    puts "| #{@@ttt[6]} | #{@@ttt[7]} | #{@@ttt[8]} |\n"
+  end
+
+  def changeval(input, val)
+    @@ttt.each { |value|
+      if value == input
+        @@ttt[input] = val
+      end
+    }
+  end
+
+  def checkspot (input)
+    if (@@ttt[input].is_a? Integer) == false
+      return false
+    else
+      return true
+    end
+  end
+
+  def winner
+    if (@@ttt[0] == "X" && @@ttt[1] == "X" && @@ttt[2] == "X") ||
+       (@@ttt[3] == "X" && @@ttt[4] == "X" && @@ttt[5] == "X") ||
+       (@@ttt[6] == "X" && @@ttt[7] == "X" && @@ttt[8] == "X") ||
+       (@@ttt[0] == "X" && @@ttt[4] == "X" && @@ttt[8] == "X") ||
+       (@@ttt[0] == "X" && @@ttt[3] == "X" && @@ttt[6] == "X") ||
+       (@@ttt[1] == "X" && @@ttt[4] == "X" && @@ttt[7] == "X") ||
+       (@@ttt[2] == "X" && @@ttt[5] == "X" && @@ttt[8] == "X") ||
+       (@@ttt[2] == "X" && @@ttt[4] == "X" && @@ttt[6] == "X") ||
+       (@@ttt[0] == "O" && @@ttt[1] == "O" && @@ttt[2] == "O") ||
+       (@@ttt[3] == "O" && @@ttt[4] == "O" && @@ttt[5] == "O") ||
+       (@@ttt[6] == "O" && @@ttt[7] == "O" && @@ttt[8] == "O") ||
+       (@@ttt[0] == "O" && @@ttt[4] == "O" && @@ttt[8] == "O") ||
+       (@@ttt[0] == "O" && @@ttt[3] == "O" && @@ttt[6] == "O") ||
+       (@@ttt[1] == "O" && @@ttt[4] == "O" && @@ttt[7] == "O") ||
+       (@@ttt[2] == "O" && @@ttt[5] == "O" && @@ttt[8] == "O") ||
+       (@@ttt[2] == "O" && @@ttt[4] == "O" && @@ttt[6] == "O") 
+      showboard
+      puts "We Have a Winner!"
+      return true
+    else
+      return false
+    end
+  end
+
+end
+
+#------------------------
+tic = Tboard.new
+champion = false
+player = 1
+valid = false
+
+while champion == false
+  tic.showboard
+
+  print "Player #{player}, Pick a Number: "
+  location = gets.chomp.to_i
+  
+  valid = tic.checkspot(location)
+
+  if valid == false || location < 0
+    while valid == false || location < 0
+      print "Invalid Location. Pick Another: "
+      location = gets.chomp.to_i
+      valid = tic.checkspot(location)
+    end
+  end
+
+  if player == 1
+    tic.changeval(location, "X")
+    champion = tic.winner
+    player += 1
+  elsif player == 2
+    tic.changeval(location, "O")
+    champion = tic.winner
+    player -= 1
+  end
+end
