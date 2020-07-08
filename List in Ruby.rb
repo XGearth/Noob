@@ -1,3 +1,4 @@
+#Create the Node Class
 class Node
     attr_accessor :value, :next_node
     def initialize(value=nil, next_node=nil)
@@ -6,13 +7,16 @@ class Node
     end
 end
 
+#Create the Linked List Class
 class LinkedList
     attr_accessor :list
-
+    
+    #Initialize an Array that will store the Nodes
     def initialize
         @list = []
     end
-
+    
+    #Push in a new Node
     def appends(value)
         newNode = Node.new(value)
 
@@ -22,7 +26,8 @@ class LinkedList
 
         return @list
     end
-
+    
+    #Add a Node at Index[0] and Link with Node at Index[1]
     def prepends(value)
         newNode = Node.new(value)
         @list.unshift(newNode)
@@ -31,6 +36,7 @@ class LinkedList
         return @list
     end
 
+    #Find the Size of Array
     def size
         index = 0
 
@@ -40,11 +46,13 @@ class LinkedList
 
         "There are #{index} in total."
     end
-
+    
+    #Find the Node at Index[0]
     def head
         "The Head Node is #{@list[0]}."
     end
-
+    
+    #Find the Last Node
     def tail
         index = 0
 
@@ -54,15 +62,18 @@ class LinkedList
 
         "The Tail Node is #{@list[index-1]}."
     end
-
+    
+    #Find which Node is at Index[X]
     def at(index)
         "The Node at Index: #{index} is #{@list[index-1]}"
     end
 
+    #Delete the Last Node
     def pop
        @list.pop
     end
-
+    
+    #Can [Value] be found in the List
     def contains?(value)
         @list.each do |val|
             if val.value == value
@@ -72,7 +83,8 @@ class LinkedList
 
         false
     end
-
+    
+    #Find which Index in the Array [Value] is in
     def find(value)
         index = 0
         @list.each do |val|
@@ -84,7 +96,8 @@ class LinkedList
 
         return "Not Found"
     end
-
+    
+    #List all Values in the Array
     def to_s
         index = 0
         form = ""
@@ -101,6 +114,7 @@ class LinkedList
         form
     end
 
+    #Delete a Value from the Array
     def insert_at(value, index)
         if index > list.length
             p "Invalid Index"
