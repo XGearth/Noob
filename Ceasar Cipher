@@ -4,12 +4,15 @@ print "Number of Shifts: "
 shift = gets.chomp.to_i
 
 #KEEPS SHIFT WITHIN (-26..26)
+#CORRESPONDS TO THE NUMBER OF LETTERS IN THE ALPHABET
 shift > 26 ? (shift = shift % 26) : ()
 shift < 26 ? ((shift = shift % 26) * -1) : ()
 
 word.each_byte { |x|
   case x
-    when (65..90) #FOR CAPITAL
+  
+    #FOR CAPITAL LETTERS
+    when (65..90)
       if (x + shift) < 65 #SHIFTING LEFT (-)
         x = (91 + (shift + (x - 65)))
       elsif (x + shift) > 90 #SHIFTING RIGHT (+)
@@ -17,7 +20,9 @@ word.each_byte { |x|
       else
         x += shift
       end
-    when (97..122) #FOR NON-CAPITAL
+      
+    #FOR SMALL LETERS
+    when (97..122)
       if (x + shift) < 97 #SHIFTING LEFT (-)
         x = (123 + (shift + (x - 97)))
       elsif (x + shift) > 122 #SHIFTING RIGHT (+)
